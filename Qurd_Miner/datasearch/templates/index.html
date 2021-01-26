@@ -1,0 +1,34 @@
+<html>
+<script>
+        function myFunction() { document.getElementById("test").style.display = "none" ; }
+</script>
+        <h1>test Page!!!</h1>
+        
+        <form action='/' method="POST">  {% csrf_token %}
+
+        select : <select name = 'Search_type' id = 'Search_type'>
+                <option value="">타입 선택</option>
+                <option value="URL">URL</option>
+        </select>
+        {{Types}}
+        <br>
+        <br>
+        Search_data : <input type='text' id='Search_data' name='Search_data' placeholder='DATA를 입력하세요'>
+        <br>
+        <br>
+        <input type='submit' value='POST'>
+        
+        </form>
+        <div id='test' style="visibility: {{ view }};">
+                <br>
+                Search_type : {{ Search_type_result }}
+                <br>
+                Search_result : {{ Search_indicator_result }}
+                <br>
+
+                <form><input type="button" value="페이지 새로 고침" onClick="location.href='/'"></form>
+        </div>
+        
+        <br>
+</html>
+

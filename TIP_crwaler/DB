@@ -1,0 +1,35 @@
+CREATE TABLE IF NOT EXISTS reputation_indicator (
+  id SERIAL NOT NULL,
+  indicator_name TEXT NOT NULL,
+  PRIMARY KEY (id)
+);
+
+CREATE TABLE IF NOT EXISTS  reputation_service (
+  id SERIAL NOT NULL,
+  service_name TEXT NOT NULL,
+  PRIMARY KEY (id)
+);
+
+CREATE TABLE IF NOT EXISTS  reputation_audit (
+  id SERIAL NOT NULL,
+  audit_log TEXT NOT NULL,
+  log_date TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT NOW(),
+  PRIMARY KEY (id)
+);
+
+CREATE TABLE IF NOT EXISTS reputation_data_abuse (
+  id SERIAL NOT NULL,
+  service INTEGER NOT NULL,
+  key INTEGER NOT NULL,
+  indicator_type INTEGER NOT NULL,
+  indicator TEXT NOT NULL,
+  reg_date TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT NOW(),
+  cre_date TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT NOW(),
+  CONSTRAINT reputation_data_fk1 FOREIGN KEY (service)
+    REFERENCES  reputation_service (id)
+    ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT reputation_data_fk2 FOREIGN KEY (indicator_type)
+    REFERENCES  reputation_indicator (id)
+    ON DELETE CASCADE ON UPDATE CASCADE,
+  PRIMARY KEY (id)
+);

@@ -1,4 +1,6 @@
-from Class import Service
+from Class import *
+from Crawler import *
 
-service = Service()
-print('test')
+if __name__ == "__main__":
+    service = Service()
+    Abuse()

@@ -16,3 +16,4 @@ def config(filename='dev.ini', section='local_db'):
             section, filename))
 
     return db
+
